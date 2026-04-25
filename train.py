@@ -4,7 +4,6 @@ import torch
 
 class Custom_DeepSORT_Tracker:
     def __init__(self):
-        # Move initialize variables into local storage.
        self.tracker = DeepSort(max_age=5)
 
     def __del__(self):
@@ -30,13 +29,10 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
 if __name__ == '__main__':
-    video_source = r'F:\Data for Thesis\Videos\urea.mp4'
-    video_source = r"F:\NYU\Videos\urea.mp4"
+    video_source = r'./Videos/urea.mp4'
 
-    # Make a new Tracker Object
     tracker = Custom_DeepSORT_Tracker()
 
-    # Load the YOLOv8 model
     model = YOLO('yolo11n-obb.pt')
     model.to(device)
     model.conf = 0.9  # confidence threshold (0-1)
