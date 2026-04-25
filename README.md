@@ -59,7 +59,7 @@ python get_frames.py
 ```
 
 - Set `video_filename` inside the script to point to your video
-- Annotated keyframes should be labelled using a tool such as [Roboflow](https://roboflow.com) or [LabelImg](https://github.com/heartexlabs/labelImg) with OBB support
+- Annotated keyframes should be labelled using a tool such as [CVAT](https://www.cvat.ai/), [Roboflow](https://roboflow.com), or [LabelImg](https://github.com/heartexlabs/labelImg) with OBB support
 - Output: `VideoinFrames/` (all frames), `KeyFrames/` (sampled frames)
 
 ---
