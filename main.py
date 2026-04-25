@@ -30,7 +30,7 @@ class Custom_DeepSORT_Tracker:
         return tracks
 
 
-# function to convert images to a video
+
 def images_to_video(input_folder, output_video_path, fps=30):
     files = os.listdir(input_folder)  # list all files in the input folder
     files.sort()  # sort files by name
@@ -38,8 +38,8 @@ def images_to_video(input_folder, output_video_path, fps=30):
     frame_size = None
     out = None
 
-    for i, file_name in enumerate(tqdm(files, desc="Creating video")):  # show a progress bar for video creation
-        file_path = os.path.join(input_folder, file_name)  # get the full path of the current file
+    for i, file_name in enumerate(tqdm(files, desc="Creating video")):
+        file_path = os.path.join(input_folder, file_name)
         frame = cv2.imread(file_path)  # read the image file
 
         if out is None:
@@ -47,42 +47,37 @@ def images_to_video(input_folder, output_video_path, fps=30):
             fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # define the codec for video writing
             out = cv2.VideoWriter(output_video_path, fourcc, fps, frame_size)  # create a video writer object
 
-        out.write(frame)  # write the frame to the video
+        out.write(frame) 
 
     if out is not None:
-        out.release()  # release the video writer object
+        out.release() 
 
-    print(f"Video saved successfully at: {output_video_path}")  # print a message indicating completion
-
-
+    print(f"Video saved successfully at: {output_video_path}")
 
 
-import cv2  # import the opencv library
-import os  # import the os library for interacting with the operating system
-import numpy as np  # import numpy library
-from tqdm import tqdm  # import tqdm (progress bars)
-from collections import deque  # import deque    
 
-base_dir = os.path.expanduser(r'F:\Data for Thesis') # base directory where files are stored
-video_path = r'C:\Users\billy\Desktop\NYU\For William Wei\30sec.mp4'
 
-output_dir = os.path.join(base_dir, 'SavedFramesYolo')  # directory to save extracted frames
-os.makedirs(output_dir, exist_ok=True)  # create the directory if it doesn't exist
+import cv2 
+import os  
+import numpy as np 
+from tqdm import tqdm 
+from collections import deque 
+
+base_dir = os.path.expanduser(r'./') 
+video_path = r'./30sec.mp4'
+
+output_dir = os.path.join(base_dir, 'SavedFramesYolo')
+os.makedirs(output_dir, exist_ok=True)
 
 def main():
-    # Make an object using our class
     tracker = Custom_DeepSORT_Tracker()
 
-    # Load the YOLOv8 model
-    model = YOLO(r'C:\Users\billy\Desktop\NYU\Crystal Tracking\runs\obb\train5\weights\best.pt')
+    model = YOLO(r'./runs/obb/train5/weights/best.pt')
 
-
-    # Perform inference on an image
     for i in range(200):
-        image_path = os.path.join(r'F:\Data for Thesis\VideoinFrames', f'frame_{i:04d}.jpg')
+        image_path = os.path.join(r'./VideoinFrames', f'frame_{i:04d}.jpg')
         results = model(image_path)
 
-        # Run DeepSORT on each frame
         tracks = tracker.update_tracker(results)
 
         img = cv2.imread(image_path)
