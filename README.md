@@ -1,6 +1,10 @@
+
+
 # Crystal Detection & Tracking Pipeline
 
 A computer vision pipeline for detecting, tracking, and embedding crystal instances in video footage using YOLO, DeepSORT, and a ResNet50-based metric learning model.
+
+https://github.com/user-attachments/assets/2cbe068c-707e-484c-a7a9-d23a13689cd4
 
 ---
 
