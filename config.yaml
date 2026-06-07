@@ -1,4 +1,4 @@
-path: C:/Users/billy/Desktop/NYU/Crystals-Yolo/datasets/Crystals
+path: ./
 train: images
 val: images
 

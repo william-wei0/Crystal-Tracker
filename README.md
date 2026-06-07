@@ -22,18 +22,21 @@ This project provides three main components:
 
 ```
 .
-├── train_resnet50_cosine.py   # Trains ResNet50 embedding model with cosine loss
-├── tracker_obb.py             # DeepSORT tracker using OBB YOLO detections
-├── tracker_standard.py        # DeepSORT tracker using standard YOLO + model training
-├── get_frames.py              # Extracts frames from video; selects keyframes for labelling
-├── config.yaml                # YOLO dataset configuration (user-provided)
+├── CosineEmbeddingModel/
+│   ├── train_resnet50_cosine.py   # Trains ResNet50 embedding model with cosine loss
+|   └── cosine_epoch30.pth         # Trained ResNet50 embedding model
+├── TrainingDataProcessors/
+|   ├── VideoinFrames/             # All extracted frames
+|   ├── KeyFrames/                 # Sampled keyframes for annotation
+│   ├── get_indiv_crys.py          # Extracts indivdual crystals from bounding boxes. Used for Embbeding model.
+|   └── get_training_frames.py     # Extracts frames from video; selects keyframes for labeling.
 ├── Videos/
-│   └── *.mp4                  # Input video files
-├── VideoinFrames/             # All extracted frames
-├── KeyFrames/                 # Sampled keyframes for annotation
-├── SavedFramesYolo/           # Tracked & annotated output frames + video
-├── checkpoints_cosine/        # Saved ResNet50 model checkpoints
-└── runs/                      # YOLO training outputs (weights, metrics)
+│   └── *.mp4                      # Input video files
+├── YOLOModels/
+│   └── *.pth                      # Trained Models
+├── config.yaml                    # YOLO dataset configuration (user-provided)
+├── train.py                       # Train YOLO OBB model
+└── predict.py                     # Runs YOLO OBB model on video
 ```
 
 ---
